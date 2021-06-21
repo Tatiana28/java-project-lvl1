@@ -4,6 +4,8 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class App {
+    public static final int CYCLE_Q_AND_A = 3;
+
     public static void main(String[] args) {
         System.out.println("Please enter the game number and press Enter.");
         System.out.println("1 - Greet");
@@ -21,12 +23,11 @@ public class App {
         }
         System.out.println("Answer 'yes' if number even otherwise answer 'no'.");
         int questionNum = getRandomNumber();
-        int cycleQAndA = 3;
-        for (int i = 0; i < cycleQAndA; i++) {
+        for (int i = 0; i < CYCLE_Q_AND_A; i++) {
 
             System.out.println("Question: " + questionNum);
             System.out.print("Your answer: ");
-            String answer = "";
+            String answer;
             do {
                 answer = sc.nextLine();
             } while (answer.isEmpty());
