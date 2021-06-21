@@ -21,7 +21,8 @@ public class App {
         }
         System.out.println("Answer 'yes' if number even otherwise answer 'no'.");
         int questionNum = getRandomNumber();
-        for (int i = 0; i < 3; i++) {
+        int cycleQAndA = 3;
+        for (int i = 0; i < cycleQAndA; i++) {
 
             System.out.println("Question: " + questionNum);
             System.out.print("Your answer: ");
