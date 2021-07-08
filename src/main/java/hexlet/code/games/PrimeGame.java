@@ -8,10 +8,12 @@ import static hexlet.code.Engine.getRandomNumber;
 
 public class PrimeGame {
 
+    private static final int DEFAULT_MAX_BOUND = 1000;
+
     public static boolean play() {
         Scanner sc = new Scanner(System.in);
         System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-        int randomNum = getRandomNumber(1000);
+        int randomNum = getRandomNumber(DEFAULT_MAX_BOUND);
         for (int i = 0; i < CYCLE_Q_AND_A; i++) {
             System.out.println("Question: " + randomNum);
             System.out.print("Your answer: ");
@@ -29,7 +31,7 @@ public class PrimeGame {
                 return false;
             }
             System.out.println("Correct!");
-            randomNum = getRandomNumber(1000);
+            randomNum = getRandomNumber(DEFAULT_MAX_BOUND);
         }
         return true;
     }

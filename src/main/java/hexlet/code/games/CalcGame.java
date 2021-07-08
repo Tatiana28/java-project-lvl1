@@ -8,34 +8,37 @@ import static hexlet.code.Engine.getRandomNumber;
 
 public class CalcGame {
 
-    private static final String[] symbols = {"+", "-", "*"};
+    private static final String[] SYMBOLS = {"+", "-", "*"};
 
     public static boolean play() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What is the result of the expression?");
         int leftNum = getRandomNumber();
         int rightNum = getRandomNumber();
-        int randomIndex = getRandomNumber(symbols.length);
+        int randomIndex = getRandomNumber(SYMBOLS.length);
         for (int i = 0; i < CYCLE_Q_AND_A; i++) {
-            System.out.println("Question: " + leftNum + " " + symbols[randomIndex] + " " + rightNum);
+            System.out.println("Question: " + leftNum + " " + SYMBOLS[randomIndex] + " " + rightNum);
             System.out.print("Your answer: ");
             int answer = getNumberFromInput(sc);
-            if ("+".equals(symbols[randomIndex]) && leftNum + rightNum != answer) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum + rightNum) + "'.");
+            if ("+".equals(SYMBOLS[randomIndex]) && leftNum + rightNum != answer) {
+                String msg = "'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum + rightNum) + "'.";
+                System.out.println(msg);
                 return false;
             }
-            if ("-".equals(symbols[randomIndex]) && leftNum - rightNum != answer) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum - rightNum) + "'.");
+            if ("-".equals(SYMBOLS[randomIndex]) && leftNum - rightNum != answer) {
+                String msg = "'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum - rightNum) + "'.";
+                System.out.println(msg);
                 return false;
             }
-            if ("*".equals(symbols[randomIndex]) && leftNum * rightNum != answer) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum * rightNum) + "'.");
+            if ("*".equals(SYMBOLS[randomIndex]) && leftNum * rightNum != answer) {
+                String msg = "'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum * rightNum) + "'.";
+                System.out.println(msg);
                 return false;
             }
             System.out.println("Correct!");
             leftNum = getRandomNumber();
             rightNum = getRandomNumber();
-            randomIndex = getRandomNumber(symbols.length);
+            randomIndex = getRandomNumber(SYMBOLS.length);
         }
         return true;
     }

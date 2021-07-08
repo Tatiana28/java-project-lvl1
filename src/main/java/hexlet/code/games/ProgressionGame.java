@@ -8,11 +8,14 @@ import static hexlet.code.Engine.getRandomNumber;
 
 public class ProgressionGame {
 
+    private static final int DEFAULT_STEP_BOUND = 10;
+    private static final int DEFAULT_PROGRESSION_LENGTH = 10;
+
     public static boolean play() {
         Scanner sc = new Scanner(System.in);
         System.out.println("What number is missing in the progression?");
         int startNum = getRandomNumber();
-        int stepNum = getRandomNumber(10);
+        int stepNum = getRandomNumber(DEFAULT_STEP_BOUND);
         for (int i = 0; i < CYCLE_Q_AND_A; i++) {
             int[] progression = getProgression(startNum, stepNum);
             System.out.print("Question: ");
@@ -33,13 +36,13 @@ public class ProgressionGame {
             }
             System.out.println("Correct!");
             startNum = getRandomNumber();
-            stepNum = getRandomNumber(10);
+            stepNum = getRandomNumber(DEFAULT_STEP_BOUND);
         }
         return true;
     }
 
     private static int[] getProgression(int startNum, int stepNum) {
-        int[] resultProgression = new int[10];
+        int[] resultProgression = new int[DEFAULT_PROGRESSION_LENGTH];
         for (int i = 0; i < resultProgression.length; i++, startNum = startNum + stepNum) {
             resultProgression[i] = startNum;
         }
