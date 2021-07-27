@@ -1,5 +1,7 @@
 package hexlet.code.games;
 
+import hexlet.code.Engine;
+
 import java.util.Scanner;
 
 import static hexlet.code.Engine.CYCLE_Q_AND_A;
@@ -30,7 +32,7 @@ public class ProgressionGame {
             int answer = sc.nextInt();
             int correctAnswer = progression[randomIndexGap];
             if (answer != correctAnswer) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + correctAnswer + "'.");
+                Engine.printErrorMsg(answer, correctAnswer);
                 return false;
             }
             System.out.println("Correct!");

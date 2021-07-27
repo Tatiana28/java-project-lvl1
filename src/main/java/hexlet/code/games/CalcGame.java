@@ -1,5 +1,7 @@
 package hexlet.code.games;
 
+import hexlet.code.Engine;
+
 import java.util.Scanner;
 
 import static hexlet.code.Engine.CYCLE_Q_AND_A;
@@ -20,18 +22,15 @@ public class CalcGame {
             System.out.print("Your answer: ");
             int answer = sc.nextInt();
             if ("+".equals(SYMBOLS[randomIndex]) && leftNum + rightNum != answer) {
-                String msg = "'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum + rightNum) + "'.";
-                System.out.println(msg);
+                Engine.printErrorMsg(answer, leftNum + rightNum);
                 return false;
             }
             if ("-".equals(SYMBOLS[randomIndex]) && leftNum - rightNum != answer) {
-                String msg = "'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum - rightNum) + "'.";
-                System.out.println(msg);
+                Engine.printErrorMsg(answer, leftNum - rightNum);
                 return false;
             }
             if ("*".equals(SYMBOLS[randomIndex]) && leftNum * rightNum != answer) {
-                String msg = "'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum * rightNum) + "'.";
-                System.out.println(msg);
+                Engine.printErrorMsg(answer, leftNum * rightNum);
                 return false;
             }
             System.out.println("Correct!");

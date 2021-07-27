@@ -1,5 +1,7 @@
 package hexlet.code.games;
 
+import hexlet.code.Engine;
+
 import java.math.BigInteger;
 import java.util.Scanner;
 
@@ -19,7 +21,7 @@ public class GcdGame {
             int answer = sc.nextInt();
             int gcd = leftNum.gcd(rightNum).intValue();
             if (answer != gcd) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was '" + gcd + "'.");
+                Engine.printErrorMsg(answer, gcd);
                 return false;
             }
             System.out.println("Correct!");

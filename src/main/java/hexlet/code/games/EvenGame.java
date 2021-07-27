@@ -1,5 +1,7 @@
 package hexlet.code.games;
 
+import hexlet.code.Engine;
+
 import java.util.Scanner;
 
 import static hexlet.code.Engine.CYCLE_Q_AND_A;
@@ -20,11 +22,11 @@ public class EvenGame {
             } while (answer.isEmpty());
 
             if (isEven(questionNum) && !"yes".equals(answer)) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was 'yes'.");
+                Engine.printErrorMsg(answer, "yes");
                 return false;
             }
             if (!isEven(questionNum) && !"no".equals(answer)) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was 'no'.");
+                Engine.printErrorMsg(answer, "no");
                 return false;
             }
             System.out.println("Correct!");

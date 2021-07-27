@@ -1,5 +1,7 @@
 package hexlet.code.games;
 
+import hexlet.code.Engine;
+
 import java.util.Scanner;
 import java.util.stream.IntStream;
 
@@ -23,11 +25,11 @@ public class PrimeGame {
             } while (answer.isEmpty());
 
             if (isPrime(randomNum) && !"yes".equals(answer)) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was 'yes'.");
+                Engine.printErrorMsg(answer, "yes");
                 return false;
             }
             if (!isPrime(randomNum) && !"no".equals(answer)) {
-                System.out.println("'" + answer + "' is wrong answer ;(. Correct answer was 'no'.");
+                Engine.printErrorMsg(answer, "no");
                 return false;
             }
             System.out.println("Correct!");
