@@ -21,16 +21,7 @@ public class CalcGame {
             System.out.println("Question: " + leftNum + " " + SYMBOLS[randomIndex] + " " + rightNum);
             System.out.print("Your answer: ");
             int answer = sc.nextInt();
-            if ("+".equals(SYMBOLS[randomIndex]) && leftNum + rightNum != answer) {
-                Engine.printErrorMsg(answer, leftNum + rightNum);
-                return false;
-            }
-            if ("-".equals(SYMBOLS[randomIndex]) && leftNum - rightNum != answer) {
-                Engine.printErrorMsg(answer, leftNum - rightNum);
-                return false;
-            }
-            if ("*".equals(SYMBOLS[randomIndex]) && leftNum * rightNum != answer) {
-                Engine.printErrorMsg(answer, leftNum * rightNum);
+            if (checkAnswer(leftNum, rightNum, randomIndex, answer)) {
                 return false;
             }
             System.out.println("Correct!");
@@ -39,5 +30,21 @@ public class CalcGame {
             randomIndex = getRandomNumber(SYMBOLS.length);
         }
         return true;
+    }
+
+    private static boolean checkAnswer(int leftNum, int rightNum, int randomIndex, int answer) {
+        if ("+".equals(SYMBOLS[randomIndex]) && leftNum + rightNum != answer) {
+            Engine.printErrorMsg(answer, leftNum + rightNum);
+            return true;
+        }
+        if ("-".equals(SYMBOLS[randomIndex]) && leftNum - rightNum != answer) {
+            Engine.printErrorMsg(answer, leftNum - rightNum);
+            return true;
+        }
+        if ("*".equals(SYMBOLS[randomIndex]) && leftNum * rightNum != answer) {
+            Engine.printErrorMsg(answer, leftNum * rightNum);
+            return true;
+        }
+        return false;
     }
 }

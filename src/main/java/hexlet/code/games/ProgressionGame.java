@@ -21,10 +21,10 @@ public class ProgressionGame {
             int[] progression = getProgression(startNum, stepNum);
             int randomIndexGap = generateQuestion(progression);
             System.out.print("\nYour answer: ");
-            int answer = sc.nextInt();
+            int userAnswer = sc.nextInt();
             int correctAnswer = progression[randomIndexGap];
-            if (answer != correctAnswer) {
-                Engine.printErrorMsg(answer, correctAnswer);
+            if (userAnswer != correctAnswer) {
+                Engine.printErrorMsg(userAnswer, correctAnswer);
                 return false;
             }
             System.out.println("Correct!");

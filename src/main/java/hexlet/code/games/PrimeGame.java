@@ -18,24 +18,36 @@ public class PrimeGame {
         int randomNum = getRandomNumber(DEFAULT_MAX_BOUND);
         for (int i = 0; i < CYCLE_Q_AND_A; i++) {
             System.out.println("Question: " + randomNum);
-            System.out.print("Your answer: ");
-            String answer;
-            do {
-                answer = sc.nextLine();
-            } while (answer.isEmpty());
+            String answer = getUserAnswer(sc);
 
-            if (isPrime(randomNum) && !"yes".equals(answer)) {
-                Engine.printErrorMsg(answer, "yes");
-                return false;
-            }
-            if (!isPrime(randomNum) && !"no".equals(answer)) {
-                Engine.printErrorMsg(answer, "no");
+            if (checkUserAnswer(randomNum, answer)) {
                 return false;
             }
             System.out.println("Correct!");
             randomNum = getRandomNumber(DEFAULT_MAX_BOUND);
         }
         return true;
+    }
+
+    private static boolean checkUserAnswer(int randomNum, String answer) {
+        if (isPrime(randomNum) && !"yes".equals(answer)) {
+            Engine.printErrorMsg(answer, "yes");
+            return true;
+        }
+        if (!isPrime(randomNum) && !"no".equals(answer)) {
+            Engine.printErrorMsg(answer, "no");
+            return true;
+        }
+        return false;
+    }
+
+    private static String getUserAnswer(Scanner sc) {
+        String answer;
+        System.out.print("Your answer: ");
+        do {
+            answer = sc.nextLine();
+        } while (answer.isEmpty());
+        return answer;
     }
 
     private static boolean isPrime(int number) {

@@ -5,6 +5,7 @@ import hexlet.code.games.*;
 import java.util.Random;
 
 public class Engine {
+
     public static final String MENU = "Please enter the game number and press Enter.\n" +
             "1 - Greet\n" +
             "2 - Even\n" +
@@ -13,6 +14,7 @@ public class Engine {
             "5 - Progression\n" +
             "6 - Prime\n" +
             "0 - Exit";
+
     public static final int CYCLE_Q_AND_A = 3;
     private static final int EXIT_GAME_MENU = 0;
     private static final int GREET_GAME_MENU = 1;
@@ -59,9 +61,11 @@ public class Engine {
             System.out.println("Let's try again, " + userName + "!");
         }
     }
+
     public static void printErrorMsg(Object wrongAnswer, Object correctAnswer) {
         System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'.%n", wrongAnswer, correctAnswer);
     }
+
     public static int getRandomNumber() {
         return getRandomNumber(DEFAULT_BOUND);
     }

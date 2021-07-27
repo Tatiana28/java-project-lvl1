@@ -15,24 +15,36 @@ public class EvenGame {
         int questionNum = getRandomNumber();
         for (int i = 0; i < CYCLE_Q_AND_A; i++) {
             System.out.println("Question: " + questionNum);
-            System.out.print("Your answer: ");
-            String answer;
-            do {
-                answer = sc.nextLine();
-            } while (answer.isEmpty());
+            String answer = getUserAnswer(sc);
 
-            if (isEven(questionNum) && !"yes".equals(answer)) {
-                Engine.printErrorMsg(answer, "yes");
-                return false;
-            }
-            if (!isEven(questionNum) && !"no".equals(answer)) {
-                Engine.printErrorMsg(answer, "no");
+            if (checkUserAnswer(questionNum, answer)) {
                 return false;
             }
             System.out.println("Correct!");
             questionNum = getRandomNumber();
         }
         return true;
+    }
+
+    private static boolean checkUserAnswer(int questionNum, String answer) {
+        if (isEven(questionNum) && !"yes".equals(answer)) {
+            Engine.printErrorMsg(answer, "yes");
+            return true;
+        }
+        if (!isEven(questionNum) && !"no".equals(answer)) {
+            Engine.printErrorMsg(answer, "no");
+            return true;
+        }
+        return false;
+    }
+
+    private static String getUserAnswer(Scanner sc) {
+        System.out.print("Your answer: ");
+        String answer;
+        do {
+            answer = sc.nextLine();
+        } while (answer.isEmpty());
+        return answer;
     }
 
     private static boolean isEven(int questionNum) {
