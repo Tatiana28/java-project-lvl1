@@ -19,15 +19,7 @@ public class ProgressionGame {
         int stepNum = getRandomNumber(DEFAULT_STEP_BOUND);
         for (int i = 0; i < CYCLE_Q_AND_A; i++) {
             int[] progression = getProgression(startNum, stepNum);
-            System.out.print("Question: ");
-            int randomIndexGap = getRandomNumber(progression.length);
-            for (int j = 0; j < progression.length; j++) {
-                if (j != randomIndexGap) {
-                    System.out.print(progression[j] + " ");
-                } else {
-                    System.out.print(".. ");
-                }
-            }
+            int randomIndexGap = generateQuestion(progression);
             System.out.print("\nYour answer: ");
             int answer = sc.nextInt();
             int correctAnswer = progression[randomIndexGap];
@@ -40,6 +32,19 @@ public class ProgressionGame {
             stepNum = getRandomNumber(DEFAULT_STEP_BOUND);
         }
         return true;
+    }
+
+    private static int generateQuestion(int[] progression) {
+        System.out.print("Question: ");
+        int randomIndexGap = getRandomNumber(progression.length);
+        for (int j = 0; j < progression.length; j++) {
+            if (j != randomIndexGap) {
+                System.out.print(progression[j] + " ");
+            } else {
+                System.out.print(".. ");
+            }
+        }
+        return randomIndexGap;
     }
 
     private static int[] getProgression(int startNum, int stepNum) {
