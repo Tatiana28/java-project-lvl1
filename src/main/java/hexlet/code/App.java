@@ -21,14 +21,7 @@ public class App {
     private static final int PRIME_GAME_MENU = 6;
 
     public static void main(String[] args) {
-        System.out.println("Please enter the game number and press Enter.");
-        System.out.println(GREET_GAME_MENU + " - Greet");
-        System.out.println(EVEN_GAME_MENU + " - Even");
-        System.out.println(CALC_GAME_MENU + " - Calc");
-        System.out.println(GCD_GAME_MENU + " - GCD");
-        System.out.println(PROGRESSION_GAME_MENU + " - Progression");
-        System.out.println(PRIME_GAME_MENU + " - Prime");
-        System.out.println(EXIT_GAME_MENU + " - Exit");
+        Engine.printMenu();
         Scanner sc = new Scanner(System.in);
         int choiceNum = getNumberFromInput(sc);
         System.out.println("Your choice: " + choiceNum);
