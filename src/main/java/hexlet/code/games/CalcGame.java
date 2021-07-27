@@ -2,7 +2,6 @@ package hexlet.code.games;
 
 import java.util.Scanner;
 
-import static hexlet.code.Cli.getNumberFromInput;
 import static hexlet.code.Engine.CYCLE_Q_AND_A;
 import static hexlet.code.Engine.getRandomNumber;
 
@@ -19,7 +18,7 @@ public class CalcGame {
         for (int i = 0; i < CYCLE_Q_AND_A; i++) {
             System.out.println("Question: " + leftNum + " " + SYMBOLS[randomIndex] + " " + rightNum);
             System.out.print("Your answer: ");
-            int answer = getNumberFromInput(sc);
+            int answer = sc.nextInt();
             if ("+".equals(SYMBOLS[randomIndex]) && leftNum + rightNum != answer) {
                 String msg = "'" + answer + "' is wrong answer ;(. Correct answer was '" + (leftNum + rightNum) + "'.";
                 System.out.println(msg);

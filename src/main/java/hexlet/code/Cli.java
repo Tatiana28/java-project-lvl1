@@ -12,11 +12,4 @@ public class Cli {
         System.out.println("Hello, " + username + "!");
         return username;
     }
-
-    public static int getNumberFromInput(Scanner sc) {
-        while (!sc.hasNextInt()) {
-            System.out.println("'" + sc.nextLine() + "' not a number. Please enter the correct number.");
-        }
-        return sc.nextInt();
-    }
 }
