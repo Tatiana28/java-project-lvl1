@@ -1,19 +1,23 @@
 package hexlet.code;
 
-import hexlet.code.games.*;
+import hexlet.code.games.CalcGame;
+import hexlet.code.games.EvenGame;
+import hexlet.code.games.GcdGame;
+import hexlet.code.games.PrimeGame;
+import hexlet.code.games.ProgressionGame;
 
 import java.util.Random;
 
 public class Engine {
 
-    public static final String MENU = "Please enter the game number and press Enter.\n" +
-            "1 - Greet\n" +
-            "2 - Even\n" +
-            "3 - Calc\n" +
-            "4 - GCD\n" +
-            "5 - Progression\n" +
-            "6 - Prime\n" +
-            "0 - Exit";
+    public static final String MENU = "Please enter the game number and press Enter.\n"
+            + "1 - Greet\n"
+            + "2 - Even\n"
+            + "3 - Calc\n"
+            + "4 - GCD\n"
+            + "5 - Progression\n"
+            + "6 - Prime\n"
+            + "0 - Exit";
 
     public static final int CYCLE_Q_AND_A = 3;
     private static final int EXIT_GAME_MENU = 0;
