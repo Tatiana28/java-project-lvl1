@@ -1,50 +1,39 @@
 package hexlet.code.games;
 
-import hexlet.code.Engine;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.Scanner;
-
-import static hexlet.code.Engine.CYCLE_Q_AND_A;
 import static hexlet.code.Engine.getRandomNumber;
+import static hexlet.code.Engine.playGame;
 
 public class CalcGame {
 
-    private static final String[] SYMBOLS = {"+", "-", "*"};
+    public static final String RULES = "What is the result of the expression?";
+    private static final String[] OPERATORS = {"+", "-", "*"};
 
-    public static boolean play() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("What is the result of the expression?");
-        int leftNum = getRandomNumber();
-        int rightNum = getRandomNumber();
-        int randomIndex = getRandomNumber(SYMBOLS.length);
-        for (int i = 0; i < CYCLE_Q_AND_A; i++) {
-            System.out.println("Question: " + leftNum + " " + SYMBOLS[randomIndex] + " " + rightNum);
-            System.out.print("Your answer: ");
-            int answer = sc.nextInt();
-            if (checkAnswer(leftNum, rightNum, randomIndex, answer)) {
-                return false;
-            }
-            System.out.println("Correct!");
-            leftNum = getRandomNumber();
-            rightNum = getRandomNumber();
-            randomIndex = getRandomNumber(SYMBOLS.length);
+    public static boolean play(int numberOfTries) {
+        Map<String, String> questionsAnswers = new HashMap<>();
+
+        for (int i = 0; i < numberOfTries; i++) {
+            int leftNum = getRandomNumber();
+            int rightNum = getRandomNumber();
+            String operator = OPERATORS[getRandomNumber(OPERATORS.length)];
+
+            String question = String.format("Question: %d %s %d", leftNum, operator, rightNum);
+            String correctAnswer = getCorrectAnswer(leftNum, rightNum, operator) + "";
+
+            questionsAnswers.put(question, correctAnswer);
         }
-        return true;
+        return playGame(RULES, questionsAnswers);
     }
 
-    private static boolean checkAnswer(int leftNum, int rightNum, int randomIndex, int answer) {
-        if ("+".equals(SYMBOLS[randomIndex]) && leftNum + rightNum != answer) {
-            Engine.printErrorMsg(answer, leftNum + rightNum);
-            return true;
+    private static int getCorrectAnswer(int leftNum, int rightNum, String operator) {
+        if ("+".equals(operator)) {
+            return leftNum + rightNum;
         }
-        if ("-".equals(SYMBOLS[randomIndex]) && leftNum - rightNum != answer) {
-            Engine.printErrorMsg(answer, leftNum - rightNum);
-            return true;
+        if ("-".equals(operator)) {
+            return leftNum - rightNum;
         }
-        if ("*".equals(SYMBOLS[randomIndex]) && leftNum * rightNum != answer) {
-            Engine.printErrorMsg(answer, leftNum * rightNum);
-            return true;
-        }
-        return false;
+        return leftNum * rightNum;
     }
 }

@@ -1,53 +1,29 @@
 package hexlet.code.games;
 
-import hexlet.code.Engine;
-
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.stream.IntStream;
 
-import static hexlet.code.Engine.CYCLE_Q_AND_A;
 import static hexlet.code.Engine.getRandomNumber;
+import static hexlet.code.Engine.playGame;
 
 public class PrimeGame {
 
+    public static final String RULES = "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
     private static final int DEFAULT_MAX_BOUND = 1000;
 
-    public static boolean play() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Answer 'yes' if given number is prime. Otherwise answer 'no'.");
-        int randomNum = getRandomNumber(DEFAULT_MAX_BOUND);
-        for (int i = 0; i < CYCLE_Q_AND_A; i++) {
-            System.out.println("Question: " + randomNum);
-            String answer = getUserAnswer(sc);
+    public static boolean play(int numberOfTries) {
+        Map<String, String> questionsAnswers = new HashMap<>();
 
-            if (checkUserAnswer(randomNum, answer)) {
-                return false;
-            }
-            System.out.println("Correct!");
-            randomNum = getRandomNumber(DEFAULT_MAX_BOUND);
-        }
-        return true;
-    }
+        for (int i = 0; i < numberOfTries; i++) {
+            int randomNum = getRandomNumber(DEFAULT_MAX_BOUND);
 
-    private static boolean checkUserAnswer(int randomNum, String answer) {
-        if (isPrime(randomNum) && !"yes".equals(answer)) {
-            Engine.printErrorMsg(answer, "yes");
-            return true;
-        }
-        if (!isPrime(randomNum) && !"no".equals(answer)) {
-            Engine.printErrorMsg(answer, "no");
-            return true;
-        }
-        return false;
-    }
+            String question = "Question: " + randomNum;
+            String correctAnswer = isPrime(randomNum) ? "yes" : "no";
 
-    private static String getUserAnswer(Scanner sc) {
-        String answer;
-        System.out.print("Your answer: ");
-        do {
-            answer = sc.nextLine();
-        } while (answer.isEmpty());
-        return answer;
+            questionsAnswers.put(question, correctAnswer);
+        }
+        return playGame(RULES, questionsAnswers);
     }
 
     private static boolean isPrime(int number) {

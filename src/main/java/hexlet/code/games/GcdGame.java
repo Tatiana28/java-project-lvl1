@@ -1,33 +1,28 @@
 package hexlet.code.games;
 
-import hexlet.code.Engine;
-
 import java.math.BigInteger;
-import java.util.Scanner;
+import java.util.HashMap;
+import java.util.Map;
 
-import static hexlet.code.Engine.CYCLE_Q_AND_A;
 import static hexlet.code.Engine.getRandomNumber;
+import static hexlet.code.Engine.playGame;
 
 public class GcdGame {
 
-    public static boolean play() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("Find the greatest common divisor of given numbers.");
-        BigInteger leftNum = BigInteger.valueOf(getRandomNumber());
-        BigInteger rightNum = BigInteger.valueOf(getRandomNumber());
-        for (int i = 0; i < CYCLE_Q_AND_A; i++) {
-            System.out.println("Question: " + leftNum + " " + rightNum);
-            System.out.print("Your answer: ");
-            int answer = sc.nextInt();
-            int gcd = leftNum.gcd(rightNum).intValue();
-            if (answer != gcd) {
-                Engine.printErrorMsg(answer, gcd);
-                return false;
-            }
-            System.out.println("Correct!");
-            leftNum = BigInteger.valueOf(getRandomNumber());
-            rightNum = BigInteger.valueOf(getRandomNumber());
+    public static final String RULES = "Find the greatest common divisor of given numbers.";
+
+    public static boolean play(int numberOfTries) {
+        Map<String, String> questionsAnswers = new HashMap<>();
+
+        for (int i = 0; i < numberOfTries; i++) {
+            BigInteger leftNum = BigInteger.valueOf(getRandomNumber());
+            BigInteger rightNum = BigInteger.valueOf(getRandomNumber());
+
+            String question = String.format("Question: %s %s", leftNum, rightNum);
+            String correctAnswer = leftNum.gcd(rightNum).toString();
+
+            questionsAnswers.put(question, correctAnswer);
         }
-        return true;
+        return playGame(RULES, questionsAnswers);
     }
 }

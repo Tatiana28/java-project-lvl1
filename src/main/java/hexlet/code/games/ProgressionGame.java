@@ -1,50 +1,44 @@
 package hexlet.code.games;
 
-import hexlet.code.Engine;
+import java.util.HashMap;
+import java.util.Map;
 
-import java.util.Scanner;
-
-import static hexlet.code.Engine.CYCLE_Q_AND_A;
 import static hexlet.code.Engine.getRandomNumber;
+import static hexlet.code.Engine.playGame;
 
 public class ProgressionGame {
 
+    public static final String RULES = "What number is missing in the progression?";
     private static final int DEFAULT_STEP_BOUND = 10;
     private static final int DEFAULT_PROGRESSION_LENGTH = 10;
 
-    public static boolean play() {
-        Scanner sc = new Scanner(System.in);
-        System.out.println("What number is missing in the progression?");
-        int startNum = getRandomNumber();
-        int stepNum = getRandomNumber(DEFAULT_STEP_BOUND);
-        for (int i = 0; i < CYCLE_Q_AND_A; i++) {
+    public static boolean play(int numberOfTries) {
+        Map<String, String> questionsAnswers = new HashMap<>();
+
+        for (int i = 0; i < numberOfTries; i++) {
+            int startNum = getRandomNumber();
+            int stepNum = getRandomNumber(DEFAULT_STEP_BOUND);
             int[] progression = getProgression(startNum, stepNum);
-            int randomIndexGap = generateQuestion(progression);
-            System.out.print("\nYour answer: ");
-            int userAnswer = sc.nextInt();
-            int correctAnswer = progression[randomIndexGap];
-            if (userAnswer != correctAnswer) {
-                Engine.printErrorMsg(userAnswer, correctAnswer);
-                return false;
-            }
-            System.out.println("Correct!");
-            startNum = getRandomNumber();
-            stepNum = getRandomNumber(DEFAULT_STEP_BOUND);
+            int randomIndexGap = getRandomNumber(progression.length);
+
+            String question = generateQuestion(progression, randomIndexGap);
+            String correctAnswer = progression[randomIndexGap] + "";
+
+            questionsAnswers.put(question, correctAnswer);
         }
-        return true;
+        return playGame(RULES, questionsAnswers);
     }
 
-    private static int generateQuestion(int[] progression) {
-        System.out.print("Question: ");
-        int randomIndexGap = getRandomNumber(progression.length);
+    private static String generateQuestion(int[] progression, int randomIndexGap) {
+        StringBuilder sb = new StringBuilder("Question: ");
         for (int j = 0; j < progression.length; j++) {
             if (j != randomIndexGap) {
-                System.out.print(progression[j] + " ");
+                sb.append(progression[j]).append(" ");
             } else {
-                System.out.print(".. ");
+                sb.append(".. ");
             }
         }
-        return randomIndexGap;
+        return sb.toString();
     }
 
     private static int[] getProgression(int startNum, int stepNum) {
