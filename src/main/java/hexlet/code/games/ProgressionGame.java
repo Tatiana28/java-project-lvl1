@@ -3,6 +3,7 @@ package hexlet.code.games;
 import java.util.HashMap;
 import java.util.Map;
 
+import static hexlet.code.Engine.NUMBER_OF_TRIES;
 import static hexlet.code.Engine.getRandomNumber;
 import static hexlet.code.Engine.playGame;
 
@@ -12,24 +13,24 @@ public class ProgressionGame {
     private static final int DEFAULT_STEP_BOUND = 10;
     private static final int DEFAULT_PROGRESSION_LENGTH = 10;
 
-    public static boolean play(int numberOfTries) {
+    public static boolean play() {
         Map<String, String> questionsAnswers = new HashMap<>();
 
-        for (int i = 0; i < numberOfTries; i++) {
+        for (int i = 0; i < NUMBER_OF_TRIES; i++) {
             int startNum = getRandomNumber();
             int stepNum = getRandomNumber(DEFAULT_STEP_BOUND);
             int[] progression = getProgression(startNum, stepNum);
             int randomIndexGap = getRandomNumber(progression.length);
 
-            String question = generateQuestion(progression, randomIndexGap);
-            String correctAnswer = progression[randomIndexGap] + "";
+            String question = getProgressionWithGap(progression, randomIndexGap);
+            String correctAnswer = String.valueOf(progression[randomIndexGap]);
 
             questionsAnswers.put(question, correctAnswer);
         }
         return playGame(RULES, questionsAnswers);
     }
 
-    private static String generateQuestion(int[] progression, int randomIndexGap) {
+    private static String getProgressionWithGap(int[] progression, int randomIndexGap) {
         StringBuilder sb = new StringBuilder("Question: ");
         for (int j = 0; j < progression.length; j++) {
             if (j != randomIndexGap) {

@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 public class Engine {
 
+    public static final int NUMBER_OF_TRIES = 3;
     private static final Random RANDOM_INT = new Random();
     private static final int DEFAULT_BOUND = 101;
 

@@ -18,7 +18,7 @@ public class App {
             + "5 - Progression\n"
             + "6 - Prime\n"
             + "0 - Exit";
-    public static final int NUMBER_OF_TRIES = 3;
+
     private static final int EXIT_GAME_MENU = 0;
     private static final int EVEN_GAME_MENU = 2;
     private static final int CALC_GAME_MENU = 3;
@@ -46,19 +46,19 @@ public class App {
         boolean gameResult;
         switch (choiceNum) {
             case EVEN_GAME_MENU:
-                gameResult = EvenGame.play(NUMBER_OF_TRIES);
+                gameResult = EvenGame.play();
                 break;
             case CALC_GAME_MENU:
-                gameResult = CalcGame.play(NUMBER_OF_TRIES);
+                gameResult = CalcGame.play();
                 break;
             case GCD_GAME_MENU:
-                gameResult = GcdGame.play(NUMBER_OF_TRIES);
+                gameResult = GcdGame.play();
                 break;
             case PROGRESSION_GAME_MENU:
-                gameResult = ProgressionGame.play(NUMBER_OF_TRIES);
+                gameResult = ProgressionGame.play();
                 break;
             case PRIME_GAME_MENU:
-                gameResult = PrimeGame.play(NUMBER_OF_TRIES);
+                gameResult = PrimeGame.play();
                 break;
             default:
                 return;
