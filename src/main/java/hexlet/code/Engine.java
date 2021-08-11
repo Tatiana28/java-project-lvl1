@@ -33,11 +33,11 @@ public class Engine {
         System.out.printf("'%s' is wrong answer ;(. Correct answer was '%s'.%n", wrongAnswer, correctAnswer);
     }
 
-    public static int getRandomNumber() {
-        return getRandomNumber(DEFAULT_BOUND);
-    }
-
     public static int getRandomNumber(int bound) {
         return RANDOM_INT.nextInt(bound);
+    }
+
+    public static int getRandomNumber() {
+        return getRandomNumber(DEFAULT_BOUND);
     }
 }
